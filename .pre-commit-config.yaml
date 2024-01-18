@@ -1,0 +1,8 @@
+repos:
+- repo: local
+  hooks:
+  - id: pytest-check
+    name: Run pytest check
+    entry: pytest.sh
+    language: script
+    always_run: true

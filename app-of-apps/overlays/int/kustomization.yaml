@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base
+- ../../../apps/2048/overlays/int
+
+patches:
+- path: int-patch.yaml

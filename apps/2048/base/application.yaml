@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: '2048'
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: "2048-game"
+    app.kubernetes.io/instance: "game-team"
+    app.kubernetes.io/part-of: "games"
+spec:
+  project: 'default'
+  source:
+    repoURL: '<update me>'
+    path: apps/2048/kustomized_helm/overlays/dev
+    targetRevision: HEAD
+    plugin:
+      name: kustomized-helm
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: '2048'
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
